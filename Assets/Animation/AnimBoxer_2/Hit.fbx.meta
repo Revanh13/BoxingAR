@@ -1,44 +1,12 @@
 fileFormatVersion: 2
-guid: 641a0cd7220c5324e8c51363bede1840
+guid: a04855bdd62463e48852e585d6eecf41
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable: []
-  externalObjects:
+  internalIDToNameTable:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: HEAD
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: KEDY
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PERCHATKY
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SHORT
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TORS
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: eyeL_hi.001
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: eyeR_hi.001
-    second: {fileID: 2100000, guid: 2a764a2efd0f76f45bf2c55d3a8765f3, type: 2}
+      74: -203655887218126122
+    second: mixamo.com
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -58,7 +26,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -119,13 +87,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
