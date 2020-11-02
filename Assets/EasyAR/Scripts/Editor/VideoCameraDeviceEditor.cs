@@ -6,40 +6,40 @@
 //
 //================================================================================================================================
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace easyar
 {
-    [CustomEditor(typeof (VideoCameraDevice), true)]
-    public class VideoCameraDeviceEditor : Editor
-    {
-        CameraDevicePreference preference;
+	[CustomEditor(typeof(VideoCameraDevice), true)]
+	public class VideoCameraDeviceEditor : Editor
+	{
+		CameraDevicePreference preference;
 
-        public void OnEnable()
-        {
-            preference = ((VideoCameraDevice)target).CameraPreference;
-        }
+		public void OnEnable()
+		{
+			preference = ((VideoCameraDevice)target).CameraPreference;
+		}
 
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-            if (((VideoCameraDevice)target).CameraOpenMethod == VideoCameraDevice.CameraDeviceOpenMethod.DeviceType)
-            {
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("CameraType"), true);
-            }
-            else
-            {
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("CameraIndex"), true);
-            }
-            var cameraPreference = serializedObject.FindProperty("cameraPreference");
-            EditorGUILayout.PropertyField(cameraPreference, new GUIContent("Camera Preference"), true);
-            serializedObject.ApplyModifiedProperties();
-            if(preference != (CameraDevicePreference)cameraPreference.enumValueIndex)
-            {
-                ((VideoCameraDevice)target).CameraPreference = (CameraDevicePreference)cameraPreference.enumValueIndex;
-                preference = (CameraDevicePreference)cameraPreference.enumValueIndex;
-            }
-        }
-    }
+		public override void OnInspectorGUI()
+		{
+			DrawDefaultInspector();
+			if (((VideoCameraDevice)target).CameraOpenMethod == VideoCameraDevice.CameraDeviceOpenMethod.DeviceType)
+			{
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("CameraType"), true);
+			}
+			else
+			{
+				EditorGUILayout.PropertyField(serializedObject.FindProperty("CameraIndex"), true);
+			}
+			var cameraPreference = serializedObject.FindProperty("cameraPreference");
+			EditorGUILayout.PropertyField(cameraPreference, new GUIContent("Camera Preference"), true);
+			serializedObject.ApplyModifiedProperties();
+			if (preference != (CameraDevicePreference)cameraPreference.enumValueIndex)
+			{
+				((VideoCameraDevice)target).CameraPreference = (CameraDevicePreference)cameraPreference.enumValueIndex;
+				preference = (CameraDevicePreference)cameraPreference.enumValueIndex;
+			}
+		}
+	}
 }

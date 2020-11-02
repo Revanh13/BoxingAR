@@ -6,21 +6,21 @@
 //
 //================================================================================================================================
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace easyar
 {
-    [CustomEditor(typeof (ObjectTrackerFrameFilter), true)]
-    public class ObjectTrackerFrameFilterEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-            var simultaneousNum = serializedObject.FindProperty("simultaneousNum");
-            EditorGUILayout.PropertyField(simultaneousNum, new GUIContent("Simultaneous Target Number"), true);
-            serializedObject.ApplyModifiedProperties();
-            ((ObjectTrackerFrameFilter)target).SimultaneousNum = simultaneousNum.intValue;
-        }
-    }
+	[CustomEditor(typeof(ObjectTrackerFrameFilter), true)]
+	public class ObjectTrackerFrameFilterEditor : Editor
+	{
+		public override void OnInspectorGUI()
+		{
+			DrawDefaultInspector();
+			var simultaneousNum = serializedObject.FindProperty("simultaneousNum");
+			EditorGUILayout.PropertyField(simultaneousNum, new GUIContent("Simultaneous Target Number"), true);
+			serializedObject.ApplyModifiedProperties();
+			((ObjectTrackerFrameFilter)target).SimultaneousNum = simultaneousNum.intValue;
+		}
+	}
 }

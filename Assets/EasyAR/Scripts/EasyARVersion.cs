@@ -10,8 +10,8 @@ using System;
 
 namespace easyar
 {
-    public sealed class EasyARVersion
-    {
-        public const String FullVersion = "4.1.0.811-b8004aa8b";
-    }
+	public sealed class EasyARVersion
+	{
+		public const String FullVersion = "4.1.0.811-b8004aa8b";
+	}
 }

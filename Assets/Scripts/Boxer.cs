@@ -1,0 +1,70 @@
+﻿using UnityEngine;
+
+public class Boxer : MonoBehaviour
+{
+	public int HP = 100;
+	public int Stamina = 100;
+	public int Score = 0;
+
+	public int currentAttackMode = 0;   //текущая атака
+
+	GameStats GameStats;        //ссылка на геймстатс
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		GameStats = FindObjectOfType<GameStats>();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
+
+	//метод добавления очков при попадании по врагу
+	public void AddScore()
+	{
+		if (currentAttackMode == 1)
+		{
+			//если получилась атака - прямой удар
+			Score += 5;
+		}
+		if (currentAttackMode == 2)
+		{
+			//если получилась атака - боковой удар
+			Score += 10;
+		}
+		if (currentAttackMode == 3)
+		{
+			//если получилась атака - апперкот
+			Score += 20;
+		}
+	}
+
+	//метод получения урона
+	public void GotHit(int mode)
+	{
+		if (mode == 1)  //получил удар от прямого
+		{
+			HP -= 5;
+		}
+		if (mode == 2)  //получил удар от бокового
+		{
+			HP -= 10;
+		}
+		if (mode == 3)  //получил удар от апперкота
+		{
+			HP -= 20;
+		}
+
+
+		if (HP <= 0)
+		{
+			HP = 0;
+			//персонаж умер
+			//в геймстат обьявляем победителя
+			GameStats.GetWinnerByLoser(gameObject);
+		}
+	}
+}

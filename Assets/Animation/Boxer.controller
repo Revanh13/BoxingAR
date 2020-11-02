@@ -372,7 +372,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isBlosk
+    m_ConditionEvent: isBlock
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6778568649128045583}
@@ -520,7 +520,7 @@ AnimatorStateMachine:
     m_Position: {x: -250, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3994076699022415899}
-    m_Position: {x: 310, y: 20, z: 0}
+    m_Position: {x: 300, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3710869729999954788}
     m_Position: {x: 30, y: 470, z: 0}
@@ -572,7 +572,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isBlosk
+  - m_Name: isBlock
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -786,9 +786,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isBack
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isSide
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5434876009026755246}
   m_Solo: 0
@@ -834,7 +831,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isBlosk
+    m_ConditionEvent: isBlock
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3994076699022415899}
@@ -943,6 +940,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: isSide
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isBack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4793799159483465234}
@@ -1071,9 +1071,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isBack
     m_EventTreshold: 0
-  - m_ConditionMode: 3
-    m_ConditionEvent: SpeedWalk
-    m_EventTreshold: 0.2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5434876009026755246}
   m_Solo: 0

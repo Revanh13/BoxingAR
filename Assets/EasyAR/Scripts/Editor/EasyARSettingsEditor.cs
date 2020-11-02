@@ -11,14 +11,14 @@ using UnityEngine;
 
 namespace easyar
 {
-    [CustomEditor(typeof(EasyARSettings), true)]
-    public class EasyARSettingsEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("LicenseKey"), new GUIContent("EasyAR SDK License Key"), true);
-            serializedObject.ApplyModifiedProperties();
-        }
-    }
+	[CustomEditor(typeof(EasyARSettings), true)]
+	public class EasyARSettingsEditor : Editor
+	{
+		public override void OnInspectorGUI()
+		{
+			DrawDefaultInspector();
+			EditorGUILayout.PropertyField(serializedObject.FindProperty("LicenseKey"), new GUIContent("EasyAR SDK License Key"), true);
+			serializedObject.ApplyModifiedProperties();
+		}
+	}
 }
