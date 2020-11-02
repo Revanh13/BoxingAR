@@ -1,35 +1,45 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FistCollider : MonoBehaviour
 {
-	public GameObject player;
+	public Animator animator;
 
-	// Start is called before the first frame update
-	void Start()
+	private Boxer playerBoxer;
+	private bool isHit = false;
+
+	private void Start()
 	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
+		playerBoxer = gameObject.GetComponentInParent<Boxer>();
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
 		//кулак ударился с врагом
-		if (collision.gameObject.tag == "evil")
+		if (collision.gameObject.tag == "Enemy" && isHit == false)
 		{
-			GameObject evil = collision.gameObject;
+			isHit = true;			
 
-			evil.GetComponent<Boxer>().GotHit(player.GetComponent<Boxer>().currentAttackMode);
+			StartCoroutine(Hit());
+			Boxer enemyBoxer = collision.gameObject.GetComponentInParent<Boxer>();
 
-
+			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			{
+				if (playerBoxer.Stamina >= 20f)
+					playerBoxer.Stamina -= 20f;
+				else playerBoxer.Stamina = 1f;
+			}
+			else
+			{
+				enemyBoxer.GotHit(playerBoxer.currentAttackMode);
+			}
 		}
-		if (collision.gameObject.tag == "shield")
-		{
-			//удар по щиту
-		}
+	}
+
+	IEnumerator Hit()
+	{
+		yield return new WaitForSeconds(4f);
+		isHit = false;
+		print("hit is ready");
 	}
 }

@@ -5,12 +5,16 @@ public class PlayerMove : MonoBehaviour
 	public FloatingJoystick floatingJoystick;
 	private float speed = 3.5f;
 	private Animator animator;
+	private Transform transformModel;
 
 	[HideInInspector] public bool buttonLock = false;
+
+	
 
 	private void Start()
 	{
 		animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
+		transformModel = transform.GetChild(0).gameObject.transform;
 	}
 
 	public void Update()
@@ -45,5 +49,11 @@ public class PlayerMove : MonoBehaviour
 			animator.SetFloat("SpeedWalk", 0);
 			animator.SetFloat("SpeedSideWalk", 0);
 		}
+	}
+
+	public void ResetTransform()
+	{
+		transformModel.localPosition = Vector3.zero;
+		transformModel.localRotation = Quaternion.Euler(Vector3.zero);
 	}
 }

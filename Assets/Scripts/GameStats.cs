@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStats : MonoBehaviour
 {
@@ -16,17 +17,26 @@ public class GameStats : MonoBehaviour
 	public GameObject player1;
 	public GameObject player2;
 
+	private Boxer boxer1;
+
+	public Slider healthSlider;
+	public Slider staminaSlider;
+
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		StartNewRound();
+		boxer1 = player1.GetComponent<Boxer>();
 	}
 
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 			StartNewRound();
+
+		healthSlider.value = boxer1.HP;
+		staminaSlider.value = boxer1.Stamina;
 	}
 
 

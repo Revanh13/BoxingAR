@@ -10,6 +10,7 @@ public class BoxerController : MonoBehaviour
 
 	private Animator animator;
 
+
 	private void Start()
 	{
 		animator = player.transform.GetChild(0).gameObject.GetComponent<Animator>();
@@ -44,6 +45,8 @@ public class BoxerController : MonoBehaviour
 		animator.applyRootMotion = false;
 		playerMove.buttonLock = false;
 		ButtonLock = false;
+		player.GetComponent<Boxer>().currentAttackMode = 0;
+		playerMove.ResetTransform();
 	}
 
 	//кнопка атаки вперед
@@ -77,8 +80,10 @@ public class BoxerController : MonoBehaviour
 				//если атака - апперкот
 				animator.SetTrigger("HitApercut");
 			}
+			
 			StartCoroutine(Hit());
 			player.GetComponent<Boxer>().currentAttackMode = mode;
+			player.GetComponent<Boxer>().StaminaLose(mode);
 		}
 	}
 
@@ -86,7 +91,10 @@ public class BoxerController : MonoBehaviour
 	{
 		//создать коллайдер блока - стену с тагом "shield"
 		//player.getChild(0).GetComponent<Collider>().enabled = false;
-		animator.SetBool("isBlock", true);
-		ButtonLock = true;
+
+		//animator.SetBool("isBlock", true);
+		
+		animator.SetTrigger("Block");
+		StartCoroutine(Hit());
 	}
 }

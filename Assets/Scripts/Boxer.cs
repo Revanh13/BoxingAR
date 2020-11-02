@@ -1,26 +1,40 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Boxer : MonoBehaviour
 {
 	public int HP = 100;
-	public int Stamina = 100;
+	public float Stamina = 100f;
 	public int Score = 0;
+
+	private float staminaReloadSpead = 6f; // Скорость восстановления стамины
 
 	public int currentAttackMode = 0;   //текущая атака
 
 	GameStats GameStats;        //ссылка на геймстатс
 
+	Rigidbody rb;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		GameStats = FindObjectOfType<GameStats>();
+		rb = GetComponent<Rigidbody>();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if (Stamina < 100)
+			Stamina += Time.deltaTime * staminaReloadSpead;
 
+		rb.velocity = Vector3.zero;
 	}
+
+	//IEnumerator StaminaUp()
+	//{
+	//	yield return new
+	//}
 
 	//метод добавления очков при попадании по врагу
 	public void AddScore()
@@ -65,6 +79,22 @@ public class Boxer : MonoBehaviour
 			//персонаж умер
 			//в геймстат обьявляем победителя
 			GameStats.GetWinnerByLoser(gameObject);
+		}
+	}
+
+	public void StaminaLose(int mode)
+	{
+		if (mode == 1)  // прямой
+		{
+			Stamina -= 10;
+		}
+		if (mode == 2)  // боковой
+		{
+			Stamina -= 25;
+		}
+		if (mode == 3)  // аперкот
+		{
+			Stamina -= 40;
 		}
 	}
 }
