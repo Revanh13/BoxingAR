@@ -24,7 +24,7 @@ public class PlayerMove : MonoBehaviour
 			if (buttonLock == false)
 			{
 				//                                                                         заменить на + в билде
-				transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - floatingJoystick.Horizontal,
+				transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + floatingJoystick.Horizontal,
 					transform.position.y + floatingJoystick.Vertical, transform.position.z), Time.deltaTime * speed);
 
 				if (floatingJoystick.Vertical > 0) animator.SetBool("isBack", false);
