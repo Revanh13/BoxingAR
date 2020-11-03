@@ -84,9 +84,14 @@ public class Boxer : MonoBehaviour
 			//персонаж умер
 			//в геймстат обьявляем победителя
 			GameStats.GetWinnerByLoser(gameObject);
-
 			animator.applyRootMotion = true;
 			animator.SetTrigger("Lose");
+			if (gameObject.CompareTag("Enemy"))
+			{
+				GetComponent<Enemy>().isLose = true;
+				GetComponent<Enemy>().StopAllCoroutines();
+				animator.Play("KnockedOut");
+			}
 		}
 	}
 

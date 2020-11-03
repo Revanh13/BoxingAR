@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
 
     private float hitChance = 70f;
     private float blockChance = 50f;
-	
+
+	public bool isLose = false;
 
 	void Start()
     {
@@ -22,21 +23,28 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        Vector3 posOfPlayer = player.position;
-        transform.LookAt(posOfPlayer, Vector3.forward * (-1));
+		if (!isLose)
+		{
+			Vector3 posOfPlayer = player.position;
+			transform.LookAt(posOfPlayer, Vector3.forward * (-1));
 
-		distance = Vector3.Distance(player.position, transform.position);
+			distance = Vector3.Distance(player.position, transform.position);
 
 		
-		//print(distance); 
+			//print(distance); 
 
-		if (distance > 4f)
-		{
-			transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speed);
+			if (distance > 4f)
+			{
+				transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * speed);
+			}
+			else
+			{
+				transform.position = transform.position;
+			}
 		}
 		else
 		{
-			transform.position = transform.position;
+			//animator.SetTrigger("Lose");
 		}
 	}
 
@@ -49,6 +57,7 @@ public class Enemy : MonoBehaviour
 	{
         while(true)
 		{
+
 			print("itWork");
 
             yield return new WaitForSeconds(2f);

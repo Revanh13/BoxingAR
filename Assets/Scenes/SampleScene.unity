@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.43202415, g: 0.46789443, b: 0.5019005, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1955,6 +1955,7 @@ MonoBehaviour:
   player: {fileID: 1405690439}
   animator: {fileID: 5866666020031124610}
   model: {fileID: 543450651820199672}
+  isLose: 0
 --- !u!114 &1000991291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1967,7 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8b1a62f4e97f946ba4d61cea01b867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 10
   Stamina: 100
   Score: 0
   currentAttackMode: 0
@@ -6504,6 +6505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718234512941100941, guid: acb34b1a031ee3c49a2abc0b4a77a166,
+        type: 3}
+      propertyPath: HP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6718234513453463532, guid: acb34b1a031ee3c49a2abc0b4a77a166,
         type: 3}

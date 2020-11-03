@@ -23,23 +23,27 @@ public class FistCollider : MonoBehaviour
 		//кулак ударился с врагом
 		if (other.gameObject.tag == anotherTag && isHit == false)
 		{
-			isHit = true;
-
-			StartCoroutine(Hit());
 			Boxer enemyBoxer = other.gameObject.GetComponentInParent<Boxer>();
+			if (enemyBoxer.HP > 0)
+			{
+				isHit = true;
 
-			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block"))
-			{
-				if (playerBoxer.Stamina >= 20f)
-					playerBoxer.Stamina -= 20f;
-				else playerBoxer.Stamina = 1f;
-			}
-			else
-			{
-				enemyBoxer.GotHit(playerBoxer.currentAttackMode);
-				GameObject.FindObjectOfType<AudioManager>().Play("Hit");
-				Instantiate(particles, particlesSpawnPoint.position, Quaternion.identity);
-				playerBoxer.AddScore();
+				StartCoroutine(Hit());
+
+				if (animator.GetCurrentAnimatorStateInfo(0).IsName("Block"))
+				{
+					if (playerBoxer.Stamina >= 20f)
+						playerBoxer.Stamina -= 20f;
+					else playerBoxer.Stamina = 1f;
+				}
+				else
+				{
+					enemyBoxer.GotHit(playerBoxer.currentAttackMode);
+					GameObject.FindObjectOfType<AudioManager>().Play("Hit");
+					if (gameObject.CompareTag("Player"))
+						Instantiate(particles, particlesSpawnPoint.position, Quaternion.identity);
+					playerBoxer.AddScore();
+				}
 			}
 		}
 	}
