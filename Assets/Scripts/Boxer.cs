@@ -13,6 +13,8 @@ public class Boxer : MonoBehaviour
 
 	GameStats GameStats;        //ссылка на геймстатс
 
+	public Animator animator;
+
 	Rigidbody rb;
 
 	// Start is called before the first frame update
@@ -29,6 +31,7 @@ public class Boxer : MonoBehaviour
 			Stamina += Time.deltaTime * staminaReloadSpead;
 
 		rb.velocity = Vector3.zero;
+		//rb.angularVelocity = Vector3.zero;
 	}
 
 	//IEnumerator StaminaUp()
@@ -62,16 +65,20 @@ public class Boxer : MonoBehaviour
 		if (mode == 1)  //получил удар от прямого
 		{
 			HP -= 5;
+			animator.SetTrigger("isHurt");
 		}
 		if (mode == 2)  //получил удар от бокового
 		{
 			HP -= 10;
+			animator.SetTrigger("isHurt");
 		}
 		if (mode == 3)  //получил удар от апперкота
 		{
 			HP -= 20;
+			animator.SetTrigger("isHurt");
 		}
 
+		
 
 		if (HP <= 0)
 		{
@@ -79,6 +86,9 @@ public class Boxer : MonoBehaviour
 			//персонаж умер
 			//в геймстат обьявляем победителя
 			GameStats.GetWinnerByLoser(gameObject);
+
+			animator.applyRootMotion = true;
+			animator.SetTrigger("Lose");
 		}
 	}
 

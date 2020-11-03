@@ -18,9 +18,13 @@ public class GameStats : MonoBehaviour
 	public GameObject player2;
 
 	private Boxer boxer1;
+	private Boxer boxer2;
 
 	public Slider healthSlider;
 	public Slider staminaSlider;
+
+	public Slider healthSliderEnemy;
+	public Slider staminaSliderEnemy;
 
 
 	// Start is called before the first frame update
@@ -28,6 +32,7 @@ public class GameStats : MonoBehaviour
 	{
 		StartNewRound();
 		boxer1 = player1.GetComponent<Boxer>();
+		boxer2 = player2.GetComponent<Boxer>();
 	}
 
 	void Update()
@@ -37,6 +42,9 @@ public class GameStats : MonoBehaviour
 
 		healthSlider.value = boxer1.HP;
 		staminaSlider.value = boxer1.Stamina;
+
+		healthSliderEnemy.value = boxer2.HP;
+		staminaSliderEnemy.value = boxer2.Stamina;
 	}
 
 

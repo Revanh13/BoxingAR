@@ -9,12 +9,12 @@ public class PlayerMove : MonoBehaviour
 
 	[HideInInspector] public bool buttonLock = false;
 
-	
 
 	private void Start()
 	{
 		animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
 		transformModel = transform.GetChild(0).gameObject.transform;
+		ResetTransform();
 	}
 
 	public void Update()
@@ -54,6 +54,6 @@ public class PlayerMove : MonoBehaviour
 	public void ResetTransform()
 	{
 		transformModel.localPosition = Vector3.zero;
-		transformModel.localRotation = Quaternion.Euler(Vector3.zero);
+		transformModel.localRotation = Quaternion.Euler(new Vector3(0f, 33f, 0f));
 	}
 }
