@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour
     private float distance;
     private float speed = 2.0f;
 
-    private float hitChance = 70f;
-    private float blockChance = 70f;
+    private float hitChance = 50f;
+    private float blockChance = 50f;
 	
 
 	void Start()
@@ -38,6 +38,11 @@ public class Enemy : MonoBehaviour
 		{
 			transform.position = transform.position;
 		}
+	}
+
+	public void StartCorHit()
+	{
+		StartCoroutine(HitChance());
 	}
 
     IEnumerator HitChance()

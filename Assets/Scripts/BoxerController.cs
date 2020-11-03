@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class BoxerController : MonoBehaviour
 {
+	public GameObject joystic;
+	public GameObject buttonSafe;
+
 	public GameObject player;        //ссылка на игрока
 	public GameObject evil;          //ссылка на врага
 	public PlayerMove playerMove;
@@ -35,17 +38,20 @@ public class BoxerController : MonoBehaviour
 		//      buttonLock = false;
 	}
 
-	IEnumerator Hit()
+	IEnumerator HitOne()
 	{
+		buttonSafe.SetActive(true);
 		ButtonLock = true;
 		playerMove.buttonLock = true;
-		yield return new WaitForFixedUpdate();
+		//yield return new WaitForFixedUpdate();
 		animator.applyRootMotion = true;
 		yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 		animator.applyRootMotion = false;
 		playerMove.buttonLock = false;
 		ButtonLock = false;
+		joystic.SetActive(true);
 		player.GetComponent<Boxer>().currentAttackMode = 0;
+		buttonSafe.SetActive(false);
 		playerMove.ResetTransform();
 	}
 
@@ -81,7 +87,7 @@ public class BoxerController : MonoBehaviour
 				animator.SetTrigger("HitApercut");
 			}
 			
-			StartCoroutine(Hit());
+			StartCoroutine(HitOne());
 			player.GetComponent<Boxer>().currentAttackMode = mode;
 			player.GetComponent<Boxer>().StaminaLose(mode);
 		}
@@ -95,6 +101,6 @@ public class BoxerController : MonoBehaviour
 		//animator.SetBool("isBlock", true);
 		
 		animator.SetTrigger("Block");
-		StartCoroutine(Hit());
+		StartCoroutine(HitOne());
 	}
 }

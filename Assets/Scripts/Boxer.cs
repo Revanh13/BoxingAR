@@ -78,8 +78,6 @@ public class Boxer : MonoBehaviour
 			animator.SetTrigger("isHurt");
 		}
 
-		
-
 		if (HP <= 0)
 		{
 			HP = 0;

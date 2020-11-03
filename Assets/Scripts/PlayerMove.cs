@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
 	private Animator animator;
 	private Transform transformModel;
 
+	public GameObject buttonSafe;
+
 	[HideInInspector] public bool buttonLock = false;
 
 
@@ -15,6 +17,7 @@ public class PlayerMove : MonoBehaviour
 		animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
 		transformModel = transform.GetChild(0).gameObject.transform;
 		ResetTransform();
+		buttonSafe.SetActive(false);
 	}
 
 	public void Update()
@@ -23,6 +26,8 @@ public class PlayerMove : MonoBehaviour
 		{
 			if (buttonLock == false)
 			{
+				buttonSafe.SetActive(true);
+
 				//                                                                         заменить на + в билде
 				transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + floatingJoystick.Horizontal,
 					transform.position.y + floatingJoystick.Vertical, transform.position.z), Time.deltaTime * speed);
@@ -46,6 +51,7 @@ public class PlayerMove : MonoBehaviour
 		}
 		else
 		{
+			buttonSafe.SetActive(false);
 			animator.SetFloat("SpeedWalk", 0);
 			animator.SetFloat("SpeedSideWalk", 0);
 		}

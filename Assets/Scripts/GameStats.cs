@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using easyar;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameStats : MonoBehaviour
@@ -26,6 +28,13 @@ public class GameStats : MonoBehaviour
 	public Slider healthSliderEnemy;
 	public Slider staminaSliderEnemy;
 
+	public Text textTime;
+
+	public GameObject nextRound;
+	private bool isFirst = true;
+
+	public GameObject wining;
+	public GameObject losing;
 
 	// Start is called before the first frame update
 	void Start()
@@ -33,6 +42,9 @@ public class GameStats : MonoBehaviour
 		StartNewRound();
 		boxer1 = player1.GetComponent<Boxer>();
 		boxer2 = player2.GetComponent<Boxer>();
+		nextRound.SetActive(false);
+		wining.SetActive(false);
+		losing.SetActive(false);
 	}
 
 	void Update()
@@ -55,6 +67,24 @@ public class GameStats : MonoBehaviour
 		if (NumberOfRound < 4)
 		{
 			TimeLeftForEndOfRound = TimeOfRound;
+			Time.timeScale = 1.0f;
+			player1.transform.position = new Vector3(-6.67f, -5.66f, -4.92f);
+			player2.transform.position = new Vector3(6.55f, 7.41f, -4.92f);
+			player1.SetActive(true);
+			player2.SetActive(true);
+			player2.GetComponent<Enemy>().StartCorHit();
+			
+			if(!isFirst)
+			{
+				if (boxer1.HP < 71) boxer1.HP += 30;
+				else boxer1.HP = 100;
+				if (boxer2.HP < 71) boxer2.HP += 30;
+				else boxer2.HP = 100;
+				boxer1.Stamina = 100;
+				boxer2.Stamina = 100;
+			}
+			isFirst = false;
+			nextRound.SetActive(false);
 			StartCoroutine(timer());
 		}
 		else
@@ -67,6 +97,7 @@ public class GameStats : MonoBehaviour
 		//пока оставшееся время раунда больше-равно нуля и победителя еще нет
 		while (TimeLeftForEndOfRound > -1 && winner == null)
 		{
+			textTime.text = TimeLeftForEndOfRound.ToString();
 			TimeLeftForEndOfRound -= 1f;
 			yield return new WaitForSeconds(1f);
 		}
@@ -74,7 +105,13 @@ public class GameStats : MonoBehaviour
 		if (winner != null)
 			print("Knock-Out!");
 		else
+		{
 			print("Out of Time!");
+			nextRound.SetActive(true);
+			player1.SetActive(false);
+			player2.SetActive(false);
+			player2.GetComponent<Enemy>().StopAllCoroutines();
+		}
 
 		TryEndGame();
 	}
@@ -112,7 +149,25 @@ public class GameStats : MonoBehaviour
 			if (winner == null)
 				print("No Winner:(");
 			else
+			{
 				print("Winner - " + winner.name);
+				
+				if (winner == player1)
+				{
+					wining.SetActive(true);
+					player1.SetActive(false);
+					player2.SetActive(false);
+					player2.GetComponent<Enemy>().StopAllCoroutines();
+				}
+				else
+				{
+					winner = player2;
+					losing.SetActive(true);
+					player1.SetActive(false);
+					player2.SetActive(false);
+					player2.GetComponent<Enemy>().StopAllCoroutines();
+				}
+			}
 
 			NumberOfRound = 4;
 		}
@@ -122,9 +177,26 @@ public class GameStats : MonoBehaviour
 	public void GetWinnerByLoser(GameObject loser)
 	{
 		if (loser == player1)
+		{
 			winner = player2;
+			losing.SetActive(true);
+			player1.SetActive(false);
+			player2.SetActive(false);
+			player2.GetComponent<Enemy>().StopAllCoroutines();
+		}
 		else if (loser == player2)
+		{
 			winner = player1;
+			wining.SetActive(true);
+			player1.SetActive(false);
+			player2.SetActive(false);
+			player2.GetComponent<Enemy>().StopAllCoroutines();
+		}
 
+	}
+
+	public void RestartLevel()
+	{
+		SceneManager.LoadScene(0);
 	}
 }

@@ -3,6 +3,8 @@
 public class Pause : MonoBehaviour
 {
 	public GameObject objectAR;
+	public Enemy enemy;
+	private bool isFirst = true;
 
 	// Update is called once per frame
 	void Update()
@@ -10,7 +12,12 @@ public class Pause : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape))
 			buttonPause();
 
-		autoPauser();
+		if (objectAR.activeInHierarchy)
+			PauseAll(false);
+
+		if (!objectAR.activeInHierarchy)
+			PauseAll(true);
+		//autoPauser();
 	}
 
 	//автоматическое установление паузы при потере метки
@@ -23,7 +30,7 @@ public class Pause : MonoBehaviour
 	//кнопка паузы
 	public void buttonPause()
 	{
-		if (Time.timeScale == 1f)
+		if (Time.timeScale == 1.0f)
 		{
 			PauseAll(true);
 		}
@@ -40,13 +47,21 @@ public class Pause : MonoBehaviour
 		if (setOn)
 		{
 			print("paused");
-			Time.timeScale = 0f;
+			Time.timeScale = 0.0f;
+			StopAllCoroutines();
+			isFirst = true;
 		}
 		//если надо выключить паузу
 		else
 		{
 			print("unpaused");
-			Time.timeScale = 1f;
+			Time.timeScale = 1.0f;
+
+			if (isFirst)
+			{
+				isFirst = false;
+				enemy.StartCorHit();
+			}
 		}
 	}
 }

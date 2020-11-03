@@ -34,6 +34,7 @@ public class FistCollider : MonoBehaviour
 			else
 			{
 				enemyBoxer.GotHit(playerBoxer.currentAttackMode);
+				playerBoxer.AddScore();
 			}
 		}
 	}
