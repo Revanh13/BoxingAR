@@ -5,6 +5,9 @@ public class FistCollider : MonoBehaviour
 {
 	public Animator animator;
 
+	public GameObject particles;
+	public Transform particlesSpawnPoint;
+
 	private Boxer playerBoxer;
 	private bool isHit = false;
 
@@ -35,6 +38,7 @@ public class FistCollider : MonoBehaviour
 			{
 				enemyBoxer.GotHit(playerBoxer.currentAttackMode);
 				GameObject.FindObjectOfType<AudioManager>().Play("Hit");
+				Instantiate(particles, particlesSpawnPoint.position, Quaternion.identity);
 				playerBoxer.AddScore();
 			}
 		}

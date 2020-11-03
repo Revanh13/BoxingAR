@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ParticleController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private ParticleSystem particleSystem;
     void Start()
     {
-        
+        particleSystem = GetComponent<ParticleSystem>();
+        StartCoroutine(Lifetime());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Lifetime()
     {
-        
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 }

@@ -106,6 +106,7 @@ public class GameStats : MonoBehaviour
 			GameObject.FindObjectOfType<AudioManager>().Play("Gong");
 			print("Out of Time!");
 			nextRound.SetActive(true);
+			//Time.timeScale = 0.0f;
 			//player1.SetActive(false);
 			//player2.SetActive(false);
 			//player2.GetComponent<Enemy>().StopAllCoroutines();
