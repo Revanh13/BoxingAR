@@ -49,9 +49,6 @@ public class GameStats : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-			StartNewRound();
-
 		healthSlider.value = boxer1.HP;
 		staminaSlider.value = boxer1.Stamina;
 
@@ -70,9 +67,9 @@ public class GameStats : MonoBehaviour
 			Time.timeScale = 1.0f;
 			player1.transform.position = new Vector3(-6.67f, -5.66f, -4.92f);
 			player2.transform.position = new Vector3(6.55f, 7.41f, -4.92f);
-			player1.SetActive(true);
-			player2.SetActive(true);
-			player2.GetComponent<Enemy>().StartCorHit();
+			//player1.SetActive(true);
+			//player2.SetActive(true);
+			//player2.GetComponent<Enemy>().StartCorHit();
 			
 			if(!isFirst)
 			{
@@ -106,11 +103,12 @@ public class GameStats : MonoBehaviour
 			print("Knock-Out!");
 		else
 		{
+			GameObject.FindObjectOfType<AudioManager>().Play("Gong");
 			print("Out of Time!");
 			nextRound.SetActive(true);
-			player1.SetActive(false);
-			player2.SetActive(false);
-			player2.GetComponent<Enemy>().StopAllCoroutines();
+			//player1.SetActive(false);
+			//player2.SetActive(false);
+			//player2.GetComponent<Enemy>().StopAllCoroutines();
 		}
 
 		TryEndGame();
@@ -155,17 +153,17 @@ public class GameStats : MonoBehaviour
 				if (winner == player1)
 				{
 					wining.SetActive(true);
-					player1.SetActive(false);
-					player2.SetActive(false);
-					player2.GetComponent<Enemy>().StopAllCoroutines();
+					//player1.SetActive(false);
+					//player2.SetActive(false);
+					//player2.GetComponent<Enemy>().StopAllCoroutines();
 				}
 				else
 				{
 					winner = player2;
 					losing.SetActive(true);
-					player1.SetActive(false);
-					player2.SetActive(false);
-					player2.GetComponent<Enemy>().StopAllCoroutines();
+					//player1.SetActive(false);
+					//player2.SetActive(false);
+					//player2.GetComponent<Enemy>().StopAllCoroutines();
 				}
 			}
 
@@ -180,17 +178,17 @@ public class GameStats : MonoBehaviour
 		{
 			winner = player2;
 			losing.SetActive(true);
-			player1.SetActive(false);
-			player2.SetActive(false);
-			player2.GetComponent<Enemy>().StopAllCoroutines();
+			//player1.SetActive(false);
+			//player2.SetActive(false);
+			//player2.GetComponent<Enemy>().StopAllCoroutines();
 		}
 		else if (loser == player2)
 		{
 			winner = player1;
 			wining.SetActive(true);
-			player1.SetActive(false);
-			player2.SetActive(false);
-			player2.GetComponent<Enemy>().StopAllCoroutines();
+			//player1.SetActive(false);
+			//player2.SetActive(false);
+			//player2.GetComponent<Enemy>().StopAllCoroutines();
 		}
 
 	}

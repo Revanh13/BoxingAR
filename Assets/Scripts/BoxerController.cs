@@ -18,6 +18,7 @@ public class BoxerController : MonoBehaviour
 	{
 		animator = player.transform.GetChild(0).gameObject.GetComponent<Animator>();
 		playerMove = player.GetComponent<PlayerMove>();
+		GameObject.FindObjectOfType<AudioManager>().Play("Background");
 	}
 
 	// Update is called once per frame

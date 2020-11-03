@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private float distance;
     private float speed = 2.0f;
 
-    private float hitChance = 50f;
+    private float hitChance = 70f;
     private float blockChance = 50f;
 	
 
